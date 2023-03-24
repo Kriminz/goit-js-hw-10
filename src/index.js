@@ -23,16 +23,17 @@ function inputFetch(searchQuery) {
 // Перевірка пошуку
 function renderList(countries) {
   console.log('countries:', countries);
-  if(input.value.length > 0 && input.value.length < 2) {
+  const inputTrim = input.value.trim();
+  if(inputTrim.length > 0 && inputTrim.length < 2) {
     listCountries.innerHTML = "";
     infoCountries.innerHTML = "";
     Notiflix.Notify.info("Too many matches found. Please enter a more specific name.");
   }
-  else if(countries.message = "Not Found") {
-    Notiflix.Notify.failure("Oops, there is no country with that name")
-  }
   else if(countries.length >= 2 && countries.length < 10) {
       addListMarkup(countries);
+  }
+  else if(countries.status = 404 && countries.message === "Not Found") {
+    Notiflix.Notify.failure("Oops, there is no country with that name")
   }
   else {
     addInfoMarkup(countries);
